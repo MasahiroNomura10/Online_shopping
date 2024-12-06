@@ -12,8 +12,8 @@
 		ログアウト<input type="submit" name="ログアウト"><br>
 		購入(カートへ)<input type="submit" name="購入"><br>
 	
-		名称
-		購入数値段
+		名称	購入数	値段
+		コンピュータ<select name="amount"></select>
 	</form>
 
 </body>
