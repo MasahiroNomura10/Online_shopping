@@ -7,32 +7,33 @@
 
 <meta charset="UTF-8">
 
-<title>Insert title here</title>
+
+<title>購入画面</title>
 
 </head>
 
 <body>
-
-
-
-
-<h1>購入画面</h1>
-
-
-
-カートの中身<br>
-名称
-個数
-値段
-小計
-
-<form>
-	<p><input type = "submit" value = "購入"></p>
-	<p><input type = "submit" value = "商品ページに戻る"></p>
-</form>
-
-
-
+	<h1>購入画面</h1>
+	カートの中身<br>
+	名称　個数　値段
+	<br>
+	カートに入れたもの　個数　値段　のデータ<br>
+	<br>
+	小計<br>
+	カート内の商品の合計
+	
+	<form action="purchaseDecision.jsp" method="POST">
+	<form action="purchaseFailure.jsp" method="POST">
+		<input type="submit" value="購入"><br>
+		<br>
+	</form>	
+	
+	
+	<form action="itemList.jsp" method="POST">
+	<input type="submit" value="商品ページに戻る">
+	</form>
+	 
+	
 
 
 
