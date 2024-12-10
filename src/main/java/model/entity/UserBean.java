@@ -1,11 +1,11 @@
 package model.entity;
 
 
+import java.io.Serializable;
 
 
 
-
-public class UserBean {
+public class UserBean implements Serializable {
 	
 
 	private String userName;

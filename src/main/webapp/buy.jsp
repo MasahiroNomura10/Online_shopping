@@ -2,10 +2,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <meta charset="UTF-8">
+
+
 <title>購入画面</title>
+
 </head>
+
 <body>
 	<h1>購入画面</h1>
 	カートの中身<br>
@@ -28,9 +34,13 @@
 	</form>
 	 
 	
-	
-	
-	
+
+
 
 </body>
+
+
+
+
+
 </html>
