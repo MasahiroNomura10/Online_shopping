@@ -20,6 +20,7 @@
 	<form action="buy.jsp" method="POST">
 		<input type="submit" value="購入(カートへ)"><br>
 		<br>
+		</form>
 	
 		名称購入数値段<br>
 		コンピュータ<input type="number" id="quantity" name="数量" min="1" max="10" value="1"> 
@@ -36,7 +37,7 @@
 		<br>
 		音楽ＣＤ<input type="number" id="quantity" name="数量" min="1" max="10" value="1"> 
 		\2,500 <input type="submit" value="カートへ追加">
-	</form>
+	
 
 </body>
 </html>
