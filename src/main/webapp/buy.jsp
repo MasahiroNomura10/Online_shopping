@@ -28,7 +28,7 @@
 
 <form>
 	<p><input type = "submit" value = "購入"></p>
-	<p><input type = "submit" value = "商品ページに戻る"></p>
+	<p><input type = "submit" value = "商品ページに戻"></p>
 </form>
 
 
