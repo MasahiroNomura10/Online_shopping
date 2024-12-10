@@ -2,7 +2,7 @@ package model.entity;
 
 import java.io.Serializable;
 
-public class itemBean implements Serializable {
+public class ItemBean implements Serializable {
 	//名前
 	private String itemName;
 	
@@ -14,7 +14,7 @@ public class itemBean implements Serializable {
 	
 	
 	//itemBean構築
-	public itemBean() {
+	public ItemBean() {
 	}
 	
 	
