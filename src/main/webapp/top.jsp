@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>topページ</title>
 </head>
 <body>
-
+	<h1>ログイン画面</h1>
+	<form action="loginServlet" method="post">
+	ユーザー名：<input type="text" name="userName"><br>
+	パスワード：<input type="password" name="password"><br><br>
+	<input type="submit" value="ログイン">
+	</form>
+	<form action="acountCreateServlet" method="post"><br>
+	<input type="submit" value="アカウント登録はこちら">
+	</form>
 </body>
 </html>
