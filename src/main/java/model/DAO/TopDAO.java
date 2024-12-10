@@ -34,17 +34,33 @@ public class TopDAO{
 		String sql = "SELECT * FROM user_table";
 		
 		try(Connection con = ConnectionManager.getConnection();
-				PreparedStatement psmt =con.prepareStatement(sql));
+				PreparedStatement psmt =con.prepareStatement(sql);
 				ResultSet rs = psmt.executeQuery()){
 					
 					while(rs.next()) {
 						UserBean user = new UserBean();
-						user.setUserID(rs.getString("user_id"));
 						user.setUserName(rs.getString("user_name"));
 						user.setMailAddres(rs.getString("mail_addres"));
 						user.setPassword(rs.getString("password"));
-						
+						user.setMoney(Integer.parseInt(rs.getString("money")));
 					}
 				}
+		return userList;
+	}
+	
+	public int acountCreate(UserBean user) throws SQLException,ClassNotFoundException{
+		int count=0;
+		String sql ="INSERT INTO user_table (user_name,mail_addres,password,money)VALUES(?,?,?,?)";
+		try(Connection con = ConnectionManager.getConnection();
+				PreparedStatement psmt = con.prepareStatement(sql)){
+				
+				psmt.setString(1,user.getUserName());
+				psmt.setString(2, user.getMailAddres());
+				psmt.setString(3, user.getPassword());
+				psmt.setString(4,String.valueOf(user.getMoney()));
+				
+				count = psmt.executeUpdate();
+		}
+		return count;
 	}
 }

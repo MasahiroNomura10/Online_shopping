@@ -13,7 +13,7 @@
 	パスワード：<input type="password" name="password"><br><br>
 	<input type="submit" value="ログイン">
 	</form>
-	<form action="acountCreateServlet" method="post"><br>
+	<form action="acountCreate.jsp" method="post"><br>
 	<input type="submit" value="アカウント登録はこちら">
 	</form>
 </body>

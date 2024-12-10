@@ -28,6 +28,7 @@ public class loginservlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		
+		
 	}
 
 }
