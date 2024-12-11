@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +36,15 @@ public class purchaseServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		
+		//リクエストオブジェクトのエンコーディング方式の指定
+		request.setCharacterEncoding("UTF-8");
+		
+		//request.getParameter("");
+		
+		
+		
 	}
 
 }

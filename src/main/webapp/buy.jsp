@@ -22,7 +22,6 @@
 	小計<br>
 	カート内の商品の合計
 	
-	<form action="purchaseDecision.jsp" method="POST">
 	<form action="purchaseFailure.jsp" method="POST">
 		<input type="submit" value="購入"><br>
 		<br>
@@ -30,7 +29,7 @@
 	
 	
 	<form action="itemList.jsp" method="POST">
-	<input type="submit" value="商品ページに戻る">
+		<input type="submit" value="商品ページに戻る">
 	</form>
 	 
 	
