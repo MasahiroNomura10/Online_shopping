@@ -1,15 +1,51 @@
 package model.DAO;
 
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-
+import model.entity.ItemBean;
 
 /**
 *		アイテム関係を管理するクラス
 */
 
 public class itemDAO {
+	
+	//商品一覧のリスト？
+	public List<ItemBean> itemDisplay() throws SQLException, ClassNotFoundException {
+		List<ItemBean> itemList = new ArrayList<>();
+		
+		String sql = "SELECT item_id, item_name, price FROM item_table";
+		
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet res = pstmt.executeQuery()) {
+			
+				while (resultSet.next()) {
+					int itemId = resultSet.getInt("item_id");
+					String itemName = resultSet.getString("item_name");
+					int price = resultSet.getInt("price");
+					
+					ItemBean item = new ItemBean(itemId, itemName, price);
+					itemList.add(item);
+				}
+			}
+			return itemList;  //商品のリストを返す
+	}
+	
+	public List<ItemBean> cartAdd(int itemID) throws SQLException, ClassNotFoundException {
+		List<ItemBean> cartList = new ArrayList<>();
+		
+		
+	}
+	
+	
+	
 	
 	
 	//購入できるかを判定
