@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>アカウント登録エラー</title>
 </head>
 <body>
-
+	<h1>アカウント登録エラー</h1>
+	<p></p><br>
+	<form action="top.jsp"method="post">
+	<input type="submit" value="TOPページに戻る">
+	</form>
 </body>
 </html>

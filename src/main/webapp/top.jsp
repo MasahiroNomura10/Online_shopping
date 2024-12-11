@@ -11,6 +11,7 @@
 	<form action="loginServlet" method="post">
 	ユーザー名：<input type="text" name="userName"><br>
 	パスワード：<input type="password" name="password"><br><br>
+	
 	<input type="submit" value="ログイン">
 	</form>
 	<form action="acountCreate.jsp" method="post"><br>

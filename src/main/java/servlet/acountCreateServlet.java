@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.DAO.TopDAO;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class acountCreateServlet
@@ -36,8 +40,30 @@ public class acountCreateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url;
-		RequestDispatcher rd = request.getRequestDispatcher(url);
+		request.setCharacterEncoding("UTF-8");
+		
+		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
+		String mailAddres = request.getParameter("mailAddres");
+		int money = Integer.parseInt(request.getParameter("money"));
+		
+		UserBean user = new UserBean();
+		user.setUserName(userName);
+		user.setPassword(password);
+		user.setMailAddres(mailAddres);
+		user.setMoney(money);
+		
+		TopDAO dao = new TopDAO();
+		int count=0;
+		try {
+			count = dao.acountCreate(user);
+			
+		}catch(ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("count",count );
+		request.setAttribute("user",user );
+		RequestDispatcher rd = request.getRequestDispatcher("entry.jsp");
 		rd.forward(request, response);
 	}
 
