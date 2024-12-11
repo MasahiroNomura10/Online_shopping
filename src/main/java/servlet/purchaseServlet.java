@@ -41,7 +41,7 @@ public class purchaseServlet extends HttpServlet {
 		//リクエストオブジェクトのエンコーディング方式の指定
 		request.setCharacterEncoding("UTF-8");
 		
-		//request.getParameter("");
+		request.getParameter("");
 		
 		
 		
