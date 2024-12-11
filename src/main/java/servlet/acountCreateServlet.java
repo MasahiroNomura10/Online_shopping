@@ -42,29 +42,41 @@ public class acountCreateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
+//		ここでの変数をjspファイルで書かれた内容を使って作る。
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String mailAddres = request.getParameter("mailAddres");
 		int money = Integer.parseInt(request.getParameter("money"));
 		
+//		USEBEANを使って、手に入れた内容をbeanに送り込む。
 		UserBean user = new UserBean();
 		user.setUserName(userName);
 		user.setPassword(password);
 		user.setMailAddres(mailAddres);
 		user.setMoney(money);
 		
+//		DAOのメソッドを使うためインスタンス？する。
 		TopDAO dao = new TopDAO();
 		int count=0;
 		try {
+//			アカウント作成メソッド発動。
 			count = dao.acountCreate(user);
 			
 		}catch(ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("count",count );
-		request.setAttribute("user",user );
-		RequestDispatcher rd = request.getRequestDispatcher("entry.jsp");
-		rd.forward(request, response);
+//		エラーが起きたらエラーページに行くように条件分岐させる。
+		if(count==1) {
+			request.setAttribute("count",count );
+			request.setAttribute("user",user );
+			RequestDispatcher rd = request.getRequestDispatcher("entry.jsp");
+			rd.forward(request, response);
+		}
+		else {
+			RequestDispatcher rd = request.getRequestDispatcher("acountCreateFailure.jsp");
+			rd.forward(request, response);
+		}
+		
 	}
 
 }

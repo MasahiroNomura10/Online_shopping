@@ -8,14 +8,16 @@
 </head>
 <body>
 	<h1>ログイン画面</h1>
-	<form action="loginServlet" method="post">
+	<form action="loginservlet" method="post">
 	ユーザー名：<input type="text" name="userName"><br>
 	パスワード：<input type="password" name="password"><br><br>
 	
 	<input type="submit" value="ログイン">
 	</form>
+	
 	<form action="acountCreate.jsp" method="post"><br>
 	<input type="submit" value="アカウント登録はこちら">
 	</form>
+	
 </body>
 </html>
