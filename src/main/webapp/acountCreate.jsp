@@ -10,7 +10,7 @@
 	<h1>アカウント登録画面</h1>
 	<form action="acountCreateServlet" method="POST">
 	ユーザーネーム：<input type="text" name="userName"><br>
-	パスワード：<input type="text" name="password"><br>
+	パスワード：<input type="password" name="password"><br>
 	メールアドレス：<input type="text" name="mailAddres"><br>
 	残高：<input type="number" name="money"><br><br>
 	<input type="submit" value="アカウント登録">
