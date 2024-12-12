@@ -48,8 +48,26 @@ public class TopDAO{
 		return userList;
 	}
 	
-	public int acountCreate(UserBean user) throws SQLException,ClassNotFoundException{
-		int count=0;
+	public boolean acountSearch(String userName)throws SQLException,ClassNotFoundException{
+		String sql ="SELECT COUNT(*) FROM user_table WHERE user_name=?";
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement psmt = con.prepareStatement(sql)){
+				psmt.setString(1, userName);
+				try(ResultSet rs =psmt.executeQuery()){
+//				rs.nextはレコード全部見るため。getIntは、レコードでヒットした件数。
+//				一件でもあれば
+				if(rs.next()) {
+					return rs.getInt(1)>0;
+					
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean acountCreate(UserBean user) throws SQLException,ClassNotFoundException{
+		boolean result=false;
+		int count =0;
 		String sql ="INSERT INTO user_table (user_name,mail_addres,password,money)VALUES(?,?,?,?)";
 		try(Connection con = ConnectionManager.getConnection();
 				PreparedStatement psmt = con.prepareStatement(sql)){
@@ -59,8 +77,11 @@ public class TopDAO{
 				psmt.setString(3, user.getPassword());
 				psmt.setString(4,String.valueOf(user.getMoney()));
 				
-				count = psmt.executeUpdate();
+				count=psmt.executeUpdate();
+				if(count>0) {
+					result=true;
+				}
 		}
-		return count;
+		return result;
 	}
 }

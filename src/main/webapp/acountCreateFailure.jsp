@@ -8,7 +8,9 @@
 </head>
 <body>
 	<h1>アカウント登録エラー</h1>
-	<p></p><br>
+	
+	<%String message =(String) request.getAttribute("errormessage"); %>
+		<p><%=message %></p><br>
 	<form action="top.jsp"method="post">
 	<input type="submit" value="TOPページに戻る">
 	</form>
