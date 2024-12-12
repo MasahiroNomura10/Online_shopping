@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,32 +19,63 @@ import model.entity.ItemBean;
 
 public class itemDAO {
 	
-	//商品一覧のリスト？
+	//商品一覧のリストを表示する処理
 	public List<ItemBean> itemDisplay() throws SQLException, ClassNotFoundException {
 		List<ItemBean> itemList = new ArrayList<>();
 		
-		String sql = "SELECT item_id, item_name, price FROM item_table";
+		String sql = "SELECT * FROM item_table";
 		
 		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				ResultSet res = pstmt.executeQuery()) {
+				Statement stmt = con.createStatement();
+				ResultSet res = stmt.executeQuery(sql)) {
 			
-				while (resultSet.next()) {
-					int itemId = resultSet.getInt("item_id");
-					String itemName = resultSet.getString("item_name");
-					int price = resultSet.getInt("price");
+				while (res.next()) {
+					int itemId = res.getInt("item_id");
+					String itemName = res.getString("item_name");
+					int stock = res.getInt("stock");
+					int price = res.getInt("price");
 					
-					ItemBean item = new ItemBean(itemId, itemName, price);
+					ItemBean item = new ItemBean();
+					item.setItemId(itemId);
+					item.setItemName(itemName);
+					item.setStock(stock);
+					item.setPrice(price);
 					itemList.add(item);
 				}
 			}
 			return itemList;  //商品のリストを返す
 	}
 	
-	public List<ItemBean> cartAdd(int itemID) throws SQLException, ClassNotFoundException {
+	
+	//カートに追加する処理
+	public List<ItemBean> cartAdd(int itemId, int amount) throws SQLException, ClassNotFoundException {
 		List<ItemBean> cartList = new ArrayList<>();
 		
+		String sql = "SELECT * FROM item_table WHERE item_id = ?";
 		
+		try (Connection con = ConnectionManager.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(sql)) {
+		
+			pstmt.setInt(1, itemId);
+			
+				
+		try (ResultSet res = pstmt.executeQuery()) {
+		if (res.next()) { 
+				
+			String itemName = res.getString("item_name");
+			int price = res.getInt("price");
+			
+			ItemBean item = new ItemBean();
+			item.setItemName(itemName);
+			item.setPrice(price);
+			item.setAmount(amount);
+			
+			cartList.add(item);
+				}
+			}
+		}
+		return cartList;
+//		idで識別するように
 	}
 	
 
@@ -57,7 +89,7 @@ public class itemDAO {
 		
 		//カートの中身を拡張for文でアイテムの金額をallPriceに加算していく
 		for( ItemBean i : item ) {
-			allPrice += i.getprice();
+			allPrice += i.getPrice();
 			
 		}
 		

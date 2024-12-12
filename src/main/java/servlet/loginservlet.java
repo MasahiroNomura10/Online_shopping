@@ -46,7 +46,7 @@ public class loginservlet extends HttpServlet {
 		if(i) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userName", userName);
-			RequestDispatcher rd = request.getRequestDispatcher("itemList.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("itemDisplayServlet");
 			rd.forward(request, response);
 			
 //			そのままTOPページに残る

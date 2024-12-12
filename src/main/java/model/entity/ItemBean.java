@@ -3,14 +3,20 @@ package model.entity;
 import java.io.Serializable;
 
 public class ItemBean implements Serializable {
+	//id
+	private int itemId;
+	
 	//名前
-	private String itemName = "ホッカイロ";
+	private String itemName;
 	
 	//値段
-	private int price = 500000;
+	private int price;
 	
 	//在庫
-	private int stock = 1000;
+	private int stock;
+	
+	//購入数
+	private int amount;
 	
 	
 	
@@ -18,6 +24,16 @@ public class ItemBean implements Serializable {
 	public ItemBean() {
 	}
 	
+	//フィールドのitemIdの値を返す
+	public int getItemId() {
+		return itemId;
+	}
+	
+	//フィールドitemIdの値を設定
+	//@param itemId 名前
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
 	
 	//フィールドのitemNameの値を返す
 	public String getItemName() {
@@ -45,6 +61,17 @@ public class ItemBean implements Serializable {
 	public int getStock() {
 		return stock;
 	}
+	
+	//フィールドのamountの値を返す
+		public int getAmount() {
+			return amount;
+		}
+		
+		//フィールドamountの値を設定
+		//@param amount 数量
+		public void setAmount(int amount) {
+			this.amount = amount;
+		}
 	
 	//フィールドstockの値を設定
 			//@param stock 値段

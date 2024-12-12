@@ -15,7 +15,7 @@
 	<input type="submit" value="ログイン">
 	</form>
 	
-	<form action="acountCreate.jsp" method="post"><br>
+	<form action="acountCreate.jsp" method="post">
 	<input type="submit" value="アカウント登録はこちら">
 	</form>
 	

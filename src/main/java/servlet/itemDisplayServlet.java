@@ -59,6 +59,7 @@ public class itemDisplayServlet extends HttpServlet {
 		try {
 			//DAOを使って情報を取得
 			itemList = dao.itemDisplay();
+			System.out.println("アイテムリストを表示" + itemList);
 		} catch (SQLException | ClassNotFoundException e) {
 				e.printStackTrace();
 		}

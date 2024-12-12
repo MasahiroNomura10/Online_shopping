@@ -36,12 +36,12 @@
 				<%for (ItemBean item:itemList) { %>
 				<tr>
 					<td><%= item.getItemName() %></td>
-					<td><%= item.getStock() %></td>
+					<td><input type="number" min="1" max="<%= item.getStock() %>"></td>
 					<td><%= item.getPrice() %></td>
 					<td>
-						<form action="purchaseServlet" method="POST">
-								<input type="hidden" name="id" value="<%= item.getItemName() %>">
-								<input type="submit" value="購入画面表示">
+						<form action="add-cart-servlet" method="POST">
+								<input type="hidden" name="id" value="<%= item.getItemId() %>">
+								<input type="submit" value="カートに追加">
 						</form>
 					</td>
 				</tr>
