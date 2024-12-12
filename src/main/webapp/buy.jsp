@@ -31,8 +31,6 @@
 		int totalNum = 0;
 		
 		//リストの中身を全て表示
-		//while( cart.hasNext() ){
-		
 		for( List<ItemBean> contents : cart ){
 	%>
 
@@ -59,12 +57,13 @@
 	<!-- 合計金額を表示 -->
 	<%= totalNum%>
 
-	<form action="purchaseFailure.jsp" method="POST">
+	<!-- 購入成功or購入失敗へ -->
+	<form action="purchaseServlet.java" method="POST">
 		<input type="submit" value="購入"><br>
 		<br>
 	</form>	
 	
-	
+	<!-- 商品画面へ -->
 	<form action="itemList.jsp" method="POST">
 		<input type="submit" value="商品ページに戻る">
 	</form>
