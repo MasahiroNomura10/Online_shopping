@@ -57,27 +57,37 @@ public class acountCreateServlet extends HttpServlet {
 		
 //		DAOのメソッドを使うためインスタンス？する。
 		TopDAO dao = new TopDAO();
-		int count=0;
+		boolean result = false;
+//		boolean result2 = false;
 		try {
+//			アカウント情報取得メソッド発動
+			dao.getAllUser();
 //			アカウント作成メソッド発動。
-			count = dao.acountCreate(user);
+//			result2=dao.acountSearch(userName);
+			result=dao.acountCreate(user);
 			
-		}catch(ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-//		エラーが起きたらエラーページに行くように条件分岐させる。
-		if(count==1) {
-			request.setAttribute("count",count );
-			request.setAttribute("user",user );
-			RequestDispatcher rd = request.getRequestDispatcher("entry.jsp");
-			rd.forward(request, response);
-		}
-		else {
+//			if(result2) {
+//				request.setAttribute("errormessage","このユーザー名はすでに使用されています。");
+//				RequestDispatcher rd = request.getRequestDispatcher("acountCreateFailure.jsp");
+//				rd.forward(request, response);
+//			}else {
+//				エラーが起きたらエラーページに行くように条件分岐させる。
+//				}
+			if(result) {
+				request.setAttribute("user",user );
+				RequestDispatcher rd = request.getRequestDispatcher("entry.jsp");
+				rd.forward(request, response);
+			}
+			else{
+				RequestDispatcher rd = request.getRequestDispatcher("acountCreateFailure.jsp");
+				rd.forward(request, response);
+			}
+		}catch(ClassNotFoundException | SQLException e ) {
+			request.setAttribute("errormessage","このユーザー名はすでに使用されています。");
 			RequestDispatcher rd = request.getRequestDispatcher("acountCreateFailure.jsp");
 			rd.forward(request, response);
+			e.printStackTrace();
 		}
-		
 	}
-
 }
 
