@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import model.entity.ItemBean;
 
 /**
@@ -44,41 +46,44 @@ public class itemDAO {
 		
 	}
 	
+
+	
+	//リストの中身の合計金額を返す
+	public int getAllPrice( List< ItemBean >item ) {
+		
+		//合計金額を入れるフィールド
+		int allPrice = 0;
+		
+		
+		//カートの中身を拡張for文でアイテムの金額をallPriceに加算していく
+		for( ItemBean i : item ) {
+			allPrice += i.getprice();
+			
+		}
+		
+		return allPrice;
+	}
+	
+	
 	
 	
 	
 	
 	//購入できるかを判定
-	public boolean purchase( List< Integer >itemBean, List< Integer >UserBean, int userId ) {
+	public boolean purchase( List< ItemBean >item, HttpSession session ) {
 		
 		//判定フィールド
 		boolean judge = false;
-		//ユーザーの残高を入れる
-		int money = UserBean.get( userId + 5 );
-		//合計金額フィールド
-		int totalPay = 0;
-		//カートの中身を判別する際に進めるカウント
-		int count = 0;
-		//アイテムごとの個数フィールド
-		int itemNum = 0;
-		//アイテムごとの値段フィールド
-		int itemPay = 0;
-		//カウントを進める時にアイテム群を一つ分進める時の値
-		final int ITEMDATA = 3;
 		
-		//カートのリストから合計金額を取得する
-		while( itemBean.get( count ) != 0 ) {
-			//リストから個数を取得
-			itemNum = itemBean.get( count + 1);
-			//リストから値段を取得
-			itemPay = itemBean.get( count + 2);
-			
-			//合計金額に追加する
-			totalPay += (itemNum * itemPay);
-			
-			//次のアイテムに進む
-			count += ITEMDATA;
-		}
+		//ユーザーの残高を入れる
+		int money = 0;
+
+		//合計金額フィールド
+		int totalPay = getAllPrice(item);
+		
+		//ログインしているユーザーネームを取得する
+		String name = (String)session.getAttribute("userName");
+		
 		
 		//購入判定
 		if( money >= totalPay ) {
