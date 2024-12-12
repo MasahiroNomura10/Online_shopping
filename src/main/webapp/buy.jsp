@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <!-- アイテムビーンをインポート -->
-<%@page import = "java.util.List,model.entity.ItemBean.java" %>
+<%@page import = "java.util.List,model.entity.ItemBean" %>
 
 
 <%
@@ -43,11 +43,11 @@
 	<br>
 
 	<!-- カートの中身を表示 -->
-	<%=cart.getItemName();//名称%>　<%=cart.getStok();//個数%>　<%=cart.getPrice();//値段%><br>
+	<%=contents.getItemName();//名称%>　<%=contents.getStok();//個数%>　<%=contents.getPrice();//値段%><br>
 
 	<%
 		//値段を加算していく
-		totalNum += cart.getPrice();
+		totalNum += contents.getPrice();
 	%>
 	
 	<br>
