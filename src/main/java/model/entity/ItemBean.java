@@ -4,13 +4,14 @@ import java.io.Serializable;
 
 public class ItemBean implements Serializable {
 	//名前
-	private String itemName;
+	private String itemName = "ホッカイロ";
 	
 	//値段
-	private int price;
+	private int price = 500000;
 	
 	//在庫
-	private int stock;
+	private int stock = 1000;
+	
 	
 	
 	//itemBean構築
@@ -30,7 +31,7 @@ public class ItemBean implements Serializable {
 	}
 	
 	//フィールドのpriceの値を返す
-	public int getprice() {
+	public int getPrice() {
 		return price;
 	}
 	

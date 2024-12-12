@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -36,7 +37,7 @@ public class itemDisplayServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 	
 	
@@ -50,14 +51,14 @@ public class itemDisplayServlet extends HttpServlet {
 		//リクエストオブジェクトのエンコーディング方式の指定
 		request.setCharacterEncoding("UTF-8");
 		
-		List<ItemBean> itemList = null;
+		List<ItemBean> itemList = new ArrayList<>();
 		
 		//DAOのインスタンスを生成
 		itemDAO dao = new itemDAO();
 		
 		try {
 			//DAOを使って情報を取得
-			itemList = dao.selectAllItems();
+			itemList = dao.itemDisplay();
 		} catch (SQLException | ClassNotFoundException e) {
 				e.printStackTrace();
 		}
@@ -66,7 +67,7 @@ public class itemDisplayServlet extends HttpServlet {
 		request.setAttribute("itemList",itemList);
 		
 		//ページにリクエストを送信
-		RequestDispatcher rd = request.getRequestDispatcher("buy.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/itemList.jsp");
 		rd.forward(request, response);
 	}
 
