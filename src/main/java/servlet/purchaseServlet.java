@@ -59,6 +59,7 @@ public class purchaseServlet extends HttpServlet {
 			rd.forward(request, response);
 		}else {
 			//失敗
+			request.setAttribute("errormessage", "購入残高が足りておりません。");
 			RequestDispatcher rd = request.getRequestDispatcher("purchaseFailure.jsp");
 			rd.forward(request, response);
 		}
