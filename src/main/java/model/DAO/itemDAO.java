@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import model.entity.ItemBean;
 
+
+
 /**
 *		アイテム関係を管理するクラス
 */
@@ -87,9 +89,9 @@ public class itemDAO {
 		int allPrice = 0;
 		
 		
-		//カートの中身を拡張for文でアイテムの金額をallPriceに加算していく
+		//カートの中身を拡張for文で購入個数を掛けてアイテムの金額をallPriceに加算していく
 		for( ItemBean i : item ) {
-			allPrice += i.getPrice();
+			allPrice += ( i.getPrice() * i.getAmount() );
 			
 		}
 		
@@ -102,8 +104,8 @@ public class itemDAO {
 	
 	
 	//購入できるかを判定
-	public boolean purchase( List< ItemBean >item, HttpSession session ) {
-		
+	public boolean purchase( List< ItemBean >item, HttpSession session )  throws SQLException, ClassNotFoundException {
+				
 		//判定フィールド
 		boolean judge = false;
 		
@@ -116,6 +118,23 @@ public class itemDAO {
 		//ログインしているユーザーネームを取得する
 		String name = (String)session.getAttribute("userName");
 		
+		//取得したいユーザーの残高索用SQL
+		String sql = "SELECT money FROM user_table WHERE user_name = ?";
+		
+		//SQLの実行
+		try ( Connection con = ConnectionManager.getConnection();
+			  PreparedStatement pstmt = con.prepareStatement( sql ) ) {
+			
+			//SQL文に取得したユーザーネームをセットする
+			pstmt.setString( 1, name );
+			
+			//SQLの値を取得する
+			try ( ResultSet res = pstmt.executeQuery() ) {
+				//残高を取得する
+				money = res.getInt("money");
+			}
+			
+		}
 		
 		//購入判定
 		if( money >= totalPay ) {
