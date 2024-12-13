@@ -50,7 +50,7 @@ public class itemDAO {
 	
 	
 	//カートに追加する処理
-	public List<ItemBean> cartAdd(int itemId, int amount) throws SQLException, ClassNotFoundException {
+	public List<ItemBean> cartAdd(int itemId, int amount, int value) throws SQLException, ClassNotFoundException {
 		List<ItemBean> cartList = new ArrayList<>();
 		
 		String sql = "SELECT * FROM item_table WHERE item_id = ?";
@@ -77,7 +77,6 @@ public class itemDAO {
 			}
 		}
 		return cartList;
-//		idで識別するように
 	}
 	
 

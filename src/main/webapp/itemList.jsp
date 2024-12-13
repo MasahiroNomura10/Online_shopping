@@ -24,8 +24,8 @@
 		</form>
 
 		<%
-			List<ItemBean> itemList = (List<ItemBean>) request.getAttribute("itemList");
-			
+			List<ItemBean> itemList 
+				= (List<ItemBean>) request.getAttribute("itemList");
 		%>
 		<table>
 				<tr>
@@ -39,7 +39,7 @@
 					<td><input type="number" min="1" max="<%= item.getStock() %>"></td>
 					<td><%= item.getPrice() %></td>
 					<td>
-						<form action="add-cart-servlet" method="POST">
+						<form action="add-cart-servlet" method="GET">
 								<input type="hidden" name="id" value="<%= item.getItemId() %>">
 								<input type="submit" value="カートに追加">
 						</form>

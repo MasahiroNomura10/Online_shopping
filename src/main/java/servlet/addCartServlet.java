@@ -33,7 +33,8 @@ public class addCartServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
@@ -43,8 +44,11 @@ public class addCartServlet extends HttpServlet {
 		
 		try {
 			//DAOを使って情報を取得
-			itemList = dao.cartAdd(itemId, amount);
-			System.out.println("アイテムリストを表示" + itemList);
+			int itemId = Integer.parseInt(request.getParameter("itemId"));
+			int amount = Integer.parseInt(request.getParameter("amount"));
+			int value = Integer.parseInt(request.getParameter("value"));
+			itemList = dao.cartAdd(itemId, amount, value);
+//			System.out.println("アイテムリストを表示" + itemList);
 		} catch (SQLException | ClassNotFoundException e) {
 				e.printStackTrace();
 		}
