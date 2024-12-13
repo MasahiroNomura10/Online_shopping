@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.DAO.itemDAO;
 import model.entity.ItemBean;
@@ -59,6 +60,8 @@ public class itemDisplayServlet extends HttpServlet {
 		try {
 			//DAOを使って情報を取得
 			itemList = dao.itemDisplay();
+			HttpSession session = request.getSession();
+			session.setAttribute("itemList", itemList);
 			System.out.println("アイテムリストを表示" + itemList);
 		} catch (SQLException | ClassNotFoundException e) {
 				e.printStackTrace();

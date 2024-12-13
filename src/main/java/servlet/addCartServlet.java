@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.DAO.itemDAO;
 import model.entity.ItemBean;
@@ -38,7 +39,7 @@ public class addCartServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		
-		List<ItemBean> itemList = new ArrayList<>();
+		List<ItemBean> cartList = new ArrayList<>();
 		
 		itemDAO dao = new itemDAO();
 		
@@ -46,18 +47,18 @@ public class addCartServlet extends HttpServlet {
 			//DAOを使って情報を取得
 			int itemId = Integer.parseInt(request.getParameter("itemId"));
 			int amount = Integer.parseInt(request.getParameter("amount"));
-			int value = Integer.parseInt(request.getParameter("value"));
-			itemList = dao.cartAdd(itemId, amount, value);
+			System.out.println("取り急ぎ" + itemId + amount);
+			cartList = dao.cartAdd(itemId, amount);
 //			System.out.println("アイテムリストを表示" + itemList);
 		} catch (SQLException | ClassNotFoundException e) {
 				e.printStackTrace();
 		}
 		
 		//リストをリクエストスコープに設定
-		request.setAttribute("itemList",itemList);
+		HttpSession session = request.getSession();
+		session.setAttribute("cartList",cartList);
 		
 	RequestDispatcher rd = request.getRequestDispatcher("/itemList.jsp");
 	rd.forward(request, response);
 	}
 }
-
