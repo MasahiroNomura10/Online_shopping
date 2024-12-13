@@ -130,7 +130,7 @@ public class itemDAO {
 			
 			//SQLの値を取得する
 			try ( ResultSet res = pstmt.executeQuery() ) {
-				//残高を取得
+				//残高を取得する
 				money = res.getInt("money");
 			}
 			
