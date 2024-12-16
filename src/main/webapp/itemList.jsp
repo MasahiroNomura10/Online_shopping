@@ -18,7 +18,7 @@
 	</form>
 		
 <!--		カートへ追加したら購入画面へ-->
-	<form action="purchaseServlet" method="POST">
+	<form action="buy.jsp" method="POST">
 		<input type="submit" value="購入(カートへ)"><br>
 		<br>
 		</form>

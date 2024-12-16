@@ -8,7 +8,7 @@
 
 <%
 	//リクエストスコープからデータの取得
-	List<ItemBean> cart = request.getAttribute("itemList");
+	List<ItemBean> cart = request.getAttribute("cartList");
 %>
 
 
