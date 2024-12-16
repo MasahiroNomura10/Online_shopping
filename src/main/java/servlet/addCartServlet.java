@@ -16,90 +16,81 @@ import javax.servlet.http.HttpSession;
 import model.DAO.itemDAO;
 import model.entity.ItemBean;
 
-/**
- * Servlet implementation class addCartServlet
- */
 @WebServlet("/add-cart-servlet")
 public class addCartServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+
     public addCartServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		
-		//リストをリクエストスコープに設定
-		HttpSession session = request.getSession();
-		List<ItemBean> cartList = (List<ItemBean>) session.getAttribute("cartList");
-		if (cartList == null) {
-			cartList = new ArrayList<>(); //初回アクセス時にからのリストを作成
-			
-		}
-		
-		try {
-			//DAOを使って情報を取得
-			int itemId = Integer.parseInt(request.getParameter("itemId"));
-			int amount = Integer.parseInt(request.getParameter("amount"));
-			
-			itemDAO dao = new itemDAO();
-			List<ItemBean> newItems = dao.cartAdd(itemId, amount);
-			
-			
-			//取得したアイテムを既存カートリストに追加
-			if (!newItems.isEmpty()) {
-				ItemBean newItem = newItems.get(0);
-				boolean itemExists = false;
-				
-				//すでに同じカートに同じアイテムがある場合は購入数を更新
-				for (ItemBean item : cartList) {
-					if (item.getItemId() == newItem.getItemId()) {
-						item.setAmount(item.getAmount() + newItem.getAmount());
-						itemExists = true;
-						break;
-					}
-				}
-				
-				//新しいアイテムの場合はリストに追加
-				if (!itemExists) {
-					cartList.add(newItem);
-				}
-			}
-			} catch (SQLException | ClassNotFoundException | NumberFormatException e) {
-				e.printStackTrace();
-			}
-			
-			//カートリストをセッションに保存
-			session.setAttribute("cartList", cartList);
-			System.out.println(cartList);
-			
-			//商品一覧画面にリダイレクト
-			RequestDispatcher rd = request.getRequestDispatcher("/itemList.jsp");
-			rd.forward(request, response);
-	}
-	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
-		
-//			System.out.println("買うもの" + itemId + amount);
-//			cartList = dao.cartAdd(itemId, amount);
-//			System.out.println("アイテムリストを表示" + itemList);
-//		} catch (SQLException | ClassNotFoundException e) {
-//				e.printStackTrace();
-//		}
-//		
-//		//リストをリクエストスコープに設定
-//		HttpSession session = request.getSession();
-//		session.setAttribute("cartList",cartList);
-		
-	
+        // リストをリクエストスコープに設定
+        HttpSession session = request.getSession();
+        List<ItemBean> cartList = (List<ItemBean>) session.getAttribute("cartList");
+        if (cartList == null) {
+            cartList = new ArrayList<>(); // 初回アクセス時に空のリストを作成
+        }
+
+        try {
+            // 複数のitemIdとamountをリクエストパラメータから取得
+            String[] itemIdStrings = request.getParameterValues("itemId");
+            String[] amountStrings = request.getParameterValues("amount");
+
+            // それぞれをList<Integer>に変換
+            List<Integer> itemIds = new ArrayList<>();
+            List<Integer> amounts = new ArrayList<>();
+
+            // itemIdの配列をリストに変換
+            if (itemIdStrings != null) {
+                for (String itemIdStr : itemIdStrings) {
+                    itemIds.add(Integer.parseInt(itemIdStr)); // StringをIntegerに変換してリストに追加
+                }
+            }
+
+            // amountの配列をリストに変換
+            if (amountStrings != null) {
+                for (String amountStr : amountStrings) {
+                    amounts.add(Integer.parseInt(amountStr)); // StringをIntegerに変換してリストに追加
+                }
+            }
+
+            // DAOを使って情報を取得
+            itemDAO dao = new itemDAO();
+            List<ItemBean> newItems = dao.cartAdd(itemIds, amounts);  // 複数の商品と数量を渡して取得
+
+            // 取得したアイテムを既存カートリストに追加
+            for (ItemBean newItem : newItems) {
+                boolean itemExists = false;
+
+                // すでに同じカートに同じアイテムがある場合は購入数を更新
+                for (ItemBean item : cartList) {
+                    if (item.getItemId() == newItem.getItemId()) {
+                        item.setAmount(item.getAmount() + newItem.getAmount());
+                        itemExists = true;
+                        break;
+                    }
+                }
+
+                // 新しいアイテムの場合はリストに追加
+                if (!itemExists) {
+                    cartList.add(newItem);
+                }
+            }
+
+        } catch (SQLException | ClassNotFoundException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        // カートリストをセッションに保存
+        session.setAttribute("cartList", cartList);
+        System.out.println(cartList);
+
+        // 商品一覧画面にリダイレクト
+        RequestDispatcher rd = request.getRequestDispatcher("/itemList.jsp");
+        rd.forward(request, response);
+    }
 }
