@@ -58,8 +58,9 @@ public class purchaseServlet extends HttpServlet {
 		//購入判定用
 		itemDAO itemDao = new itemDAO();
 		
-		//購入判定
+		
 		try {
+			//購入判定
 			if( itemDao.purchase( cartList, session ) ) {
 				//成功
 				RequestDispatcher rd = request.getRequestDispatcher("purchaseDecision.jsp");
