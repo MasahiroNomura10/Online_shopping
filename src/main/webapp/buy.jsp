@@ -41,7 +41,7 @@
 	<br>
 
 	<!-- カートの中身を表示 -->
-	<%=contents.getItemName();//名称%>　<%=contents.getStok();//個数%>　<%=contents.getPrice();//値段%><br>
+	<%=contents.getItemName();//名称%>　<%=contents.getStock();//個数%>　<%=contents.getPrice();//値段%><br>
 
 	<%
 		//値段を加算していく
