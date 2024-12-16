@@ -23,34 +23,36 @@
 		<br>
 		</form>
 
-		<%
-			List<ItemBean> itemList 
-				= (List<ItemBean>) session.getAttribute("itemList");
-		%>
+		
 		<form action="add-cart-servlet" method="GET">
+		<%
+			List<ItemBean> cartList 
+				= (List<ItemBean>) session.getAttribute("cartList");
+		if (cartList != null && !cartList.isEmpty()) {
+		%>
 		<table>
 				<tr>
 					<th>名称</th>
 					<th>購入数</th>
 					<th>値段</th>
+					<th>小計</th>
 				</tr>
-				<%for (ItemBean item:itemList) { %>
+				<%for (ItemBean item : cartList) { %>
 				<tr>
-					<td><%= item.getItemName() %></td>
-					
-					<td><input type="number" name="amount" min="0" max="<%= item.getStock() %>" value="0"></td>
-					<td><%= item.getPrice() %></td>
-					<td>
-						<input type="hidden" name="itemId" value="<%= item.getItemId() %>">
-						<input type="submit" value="カートに追加">
-		
-					</td>
-				</tr>
-				
-				<%
-						}
-				%>
-		</table>
+        <td><%= item.getItemName() %></td>
+        <td><%= item.getAmount() %></td>
+        <td><%= item.getPrice() %></td>
+        <td><%= item.getPrice() * item.getAmount() %></td>
+    </tr>
+    <% } %>
+</table>
+<%
+    } else {
+%>
+<p>カートは空です。</p>
+<%
+    }
+%>
 		</form>
 </body>
 </html>
