@@ -8,7 +8,7 @@
 
 <%
 	//リクエストスコープからデータの取得
-	List<ItemBean> cart = request.getAttribute("cartList");
+	List<ItemBean> cart = (List<ItemBean>)request.getAttribute("cartList");
 %>
 
 
@@ -31,7 +31,7 @@
 		int totalNum = 0;
 		
 		//リストの中身を全て表示
-		for( List<ItemBean> contents : cart ){
+		for( ItemBean contents : cart ){
 	%>
 
 	カートの中身<br>
