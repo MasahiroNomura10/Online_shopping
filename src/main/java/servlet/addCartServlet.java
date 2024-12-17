@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -39,7 +40,8 @@ public class addCartServlet extends HttpServlet {
             // 複数のitemIdとamountをリクエストパラメータから取得
             String[] itemIdStrings = request.getParameterValues("itemId");
             String[] amountStrings = request.getParameterValues("amount");
-
+            System.out.println(Arrays.toString(itemIdStrings));
+            System.out.println(Arrays.toString(amountStrings));
             // それぞれをList<Integer>に変換
             List<Integer> itemIds = new ArrayList<>();
             List<Integer> amounts = new ArrayList<>();
@@ -61,7 +63,7 @@ public class addCartServlet extends HttpServlet {
             // DAOを使って情報を取得
             itemDAO dao = new itemDAO();
             List<ItemBean> newItems = dao.cartAdd(itemIds, amounts);  // 複数の商品と数量を渡して取得
-
+            System.out.println("新規アイテム：" + newItems);
             // 取得したアイテムを既存カートリストに追加
             for (ItemBean newItem : newItems) {
                 boolean itemExists = false;
