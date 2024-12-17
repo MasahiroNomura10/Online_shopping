@@ -50,19 +50,21 @@ public class itemDAO {
 	
 	
 	//カートに追加する処理
-	public List<ItemBean> cartAdd(List<Integer> itemIds, List<Integer> amounts) 
+	public ItemBean cartAdd(int itemId, int amount)
 	        throws SQLException, ClassNotFoundException {
 	    List<ItemBean> cartList = new ArrayList<>();
 	    
 	    String sql = "SELECT * FROM item_table WHERE item_id = ?";
 	    
+	    ItemBean item = null;
+	    
 	    try (Connection con = ConnectionManager.getConnection();
 	         PreparedStatement pstmt = con.prepareStatement(sql)) {
 	        
 	        // itemIdsとamountsのリストループ処理
-	        for (int i = 0; i < itemIds.size(); i++) {
-	            int itemId = itemIds.get(i); // 商品IDを取得
-	            int amount = amounts.get(i); // 購入数を取得
+//	        for (int i = 0; i < itemIds.size(); i++) {
+//	            int itemId = itemIds.get(i); // 商品IDを取得
+//	            int amount = amounts.get(i); // 購入数を取得
 	            
 	            pstmt.setInt(1, itemId); // SQLに商品IDをセット
 	            
@@ -70,19 +72,24 @@ public class itemDAO {
 	                if (res.next()) { 
 	                    String itemName = res.getString("item_name");
 	                    int price = res.getInt("price");
+	                    int stock = res.getInt("stock");
 	                    
 	                    // ItemBeanを作成し、リストに追加
-	                    ItemBean item = new ItemBean();
+	                    item = new ItemBean();
 	                    item.setItemName(itemName);
 	                    item.setPrice(price);
+	                    item.setStock(stock);
+	                    
 	                    item.setAmount(amount);
+	                   
 	                    
 	                    cartList.add(item);
+	                    System.out.println("cartList" + cartList);
 	                }
 	            }
-	        }
+	        
 	    }
-	    return cartList;
+	    return item;
 	}
 
 
