@@ -22,7 +22,7 @@
 		List<ItemBean> itemList = (List<ItemBean>) session.getAttribute("itemList");
 	%>
 	
-	<form action="add-cart-servlet" method="GET">
+	<form action="add-cart-servlet" method="POST">
 		<table>
 			<tr>
 				<th>名称</th>
@@ -32,10 +32,10 @@
 			<% for (ItemBean item : itemList) { %>
 				<tr>
 					<td><%= item.getItemName() %></td>
-					<td><input type="number" name="amount_<%= item.getItemId() %>" min="0" max="<%= item.getStock() %>" value="0"></td>
+					<td><input type="number" name="amount" min="0" max="<%= item.getStock() %>" value="0"></td>
 					<td><%= item.getPrice() %></td>
 					<td>
-						<input type="hidden" name="itemId_<%= item.getItemId() %>" value="<%= item.getItemId() %>">
+						<input type="hidden" name="itemId" value="<%= item.getItemId() %>">
 					</td>
 				</tr>
 			<% } %>

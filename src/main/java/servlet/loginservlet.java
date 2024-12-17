@@ -29,20 +29,25 @@ public class loginservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
+//
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 //		ユーザーネームとパスワードを受け取り、変数に入れちゃう。
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
+//		hashインスタンス化
 		hash h = new hash();
-		h.hash(password);
-//		password=//ハッシュ化されたパスワードにする必要がある？
+		TopDAO dao = new TopDAO();
 //		ブーリアンで認証結果出せるようにする。
 		boolean i =false;
 		try {
+			//ログイン時に入力しているパスワードと、ユーザーのソルト値をハッシュ化とソルト化する
+			String salts =dao.saltSearch(userName);
+			String newPassword=h.hashed(password,salts);
+//			String newPassword=h.hashed(password,dao.saltSearch(userName));
+			
 //			DAOのユーザー認証メソッド発動
-			i=TopDAO.userSearch(userName, password);
+			i=TopDAO.userSearch(userName, newPassword);
 		}catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -57,8 +62,7 @@ public class loginservlet extends HttpServlet {
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("loginFailure.jsp");
 			rd.forward(request, response);
-		}
-		
+		}		
 	}
 
 }

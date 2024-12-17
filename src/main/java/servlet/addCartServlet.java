@@ -25,7 +25,7 @@ public class addCartServlet extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
@@ -40,25 +40,24 @@ public class addCartServlet extends HttpServlet {
             // 複数のitemIdとamountをリクエストパラメータから取得
             String[] itemIdStrings = request.getParameterValues("itemId");
             String[] amountStrings = request.getParameterValues("amount");
-            System.out.println(Arrays.toString(itemIdStrings));
-            System.out.println(Arrays.toString(amountStrings));
-            // それぞれをList<Integer>に変換
-            List<Integer> itemIds = new ArrayList<>();
-            List<Integer> amounts = new ArrayList<>();
+            System.out.println("Item IDs: " + Arrays.toString(itemIdStrings));
+            System.out.println("Amounts" + Arrays.toString(amountStrings));
+            
 
             // itemIdの配列をリストに変換
-            if (itemIdStrings != null) {
-                for (String itemIdStr : itemIdStrings) {
-                    itemIds.add(Integer.parseInt(itemIdStr)); // StringをIntegerに変換してリストに追加
+            if (itemIdStrings != null && amountStrings != null) {
+            	// それぞれをList<Integer>に変換
+                List<Integer> itemIds = new ArrayList<>();
+                List<Integer> amounts = new ArrayList<>();
+                
+                for (int i = 0; i < itemIdStrings.length; i++) {
+                	int amount = Integer.parseInt(amountStrings[i]);
+                	if (amount > 0) { //購入数が０より大きいもののみ追加
+                		itemIds.add(Integer.parseInt(itemIdStrings[i]));
+                		amounts.add(amount);
+                	}
                 }
-            }
-
-            // amountの配列をリストに変換
-            if (amountStrings != null) {
-                for (String amountStr : amountStrings) {
-                    amounts.add(Integer.parseInt(amountStr)); // StringをIntegerに変換してリストに追加
-                }
-            }
+                
 
             // DAOを使って情報を取得
             itemDAO dao = new itemDAO();
@@ -82,6 +81,7 @@ public class addCartServlet extends HttpServlet {
                     cartList.add(newItem);
                 }
             }
+        }
 
         } catch (SQLException | ClassNotFoundException | NumberFormatException e) {
             e.printStackTrace();

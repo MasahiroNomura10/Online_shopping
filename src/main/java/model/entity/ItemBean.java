@@ -30,7 +30,7 @@ public class ItemBean implements Serializable {
 	}
 	
 	//フィールドitemIdの値を設定
-	//@param itemId 名前
+	//@param itemId 商品のID
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
@@ -41,7 +41,7 @@ public class ItemBean implements Serializable {
 	}
 	
 	//フィールドitemNameの値を設定
-	//@param itemName 名前
+	//@param itemName 商品の名前
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
@@ -52,7 +52,7 @@ public class ItemBean implements Serializable {
 	}
 	
 	//フィールドpriceの値を設定
-		//@param price 値段
+		//@param price 商品の値段
 	public void setPrice(int price) {
 		this.price = price;
 	}
@@ -62,21 +62,22 @@ public class ItemBean implements Serializable {
 		return stock;
 	}
 	
-	//フィールドのamountの値を返す
-		public int getAmount() {
-			return amount;
-		}
-		
-		//フィールドamountの値を設定
-		//@param amount 数量
-		public void setAmount(int amount) {
-			this.amount = amount;
-		}
-	
 	//フィールドstockの値を設定
-			//@param stock 値段
+	//@param stock 商品の在庫数
 	public void setStock(int stock) {
-		this.stock = stock;
+	this.stock = stock;
 	}
+	
+	//フィールドamountの値を設定
+	//@param amount 購入数量
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+		
+	//フィールドのamountの値を返す
+	public int getAmount() {
+		return amount;
+	}
+	
 }
 
