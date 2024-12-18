@@ -60,7 +60,7 @@ public class purchaseServlet extends HttpServlet {
 		
 		
 		try {
-			//購入判定
+			//購入判定する
 			if( itemDao.purchase( cartList, session ) ) {
 				//成功
 				RequestDispatcher rd = request.getRequestDispatcher("purchaseDecision.jsp");
