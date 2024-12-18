@@ -53,11 +53,10 @@ public class purchaseServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		//購入するアイテムリストのクラスを受け取る
-		List<ItemBean> cartList = ( List<ItemBean> )session.getAttribute("cart");
-		
+		List<ItemBean> cartList = ( List<ItemBean> )session.getAttribute("cartList");
+
 		//購入判定用
 		itemDAO itemDao = new itemDAO();
-		
 		
 		try {
 			//購入判定する
