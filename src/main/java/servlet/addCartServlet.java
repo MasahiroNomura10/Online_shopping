@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 
 import model.DAO.itemDAO;
 import model.entity.ItemBean;
-import model.hash.CartItem;
 
 @WebServlet("/add-cart-servlet")
 public class addCartServlet extends HttpServlet {
@@ -31,7 +30,7 @@ public class addCartServlet extends HttpServlet {
 
         // リストをリクエストスコープに設定
         HttpSession session = request.getSession();
-        List<CartItem> cartList = (List<CartItem>) session.getAttribute("cartList");
+        List<ItemBean> cartList = (List<ItemBean>) session.getAttribute("cartList");
         if (cartList == null) {
             cartList = new ArrayList<>(); // 初回アクセス時に空のリストを作成
         }
@@ -40,11 +39,11 @@ public class addCartServlet extends HttpServlet {
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         int amount = Integer.parseInt(request.getParameter("amount"));
         System.out.println("idやで" + itemId + "am" + amount);
-       itemDAO dao = new itemDAO();
+        itemDAO dao = new itemDAO();
         //商品情報を取得
         try {
-			ItemBean item = dao.cartAdd(itemId, amount);
-			System.out.println("itemName" + item.getItemName());
+        	cartList.add(dao.cartAdd(itemId, amount));
+			System.out.println("cart" + cartList);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -106,10 +105,9 @@ public class addCartServlet extends HttpServlet {
 //        } catch (SQLException | ClassNotFoundException | NumberFormatException e) {
 //            e.printStackTrace();
 //        }
-        cartList = (List<CartItem>) session.getAttribute("cartList");
         // カートリストをセッションに保存
         session.setAttribute("cartList", cartList);
-        System.out.println(cartList);
+        System.out.println("cart" + cartList);
 
         // 商品一覧画面にリダイレクト
         RequestDispatcher rd = request.getRequestDispatcher("/itemList.jsp");
