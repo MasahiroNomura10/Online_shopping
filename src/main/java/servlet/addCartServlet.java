@@ -1,5 +1,5 @@
 package servlet;
-
+ 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,45 +15,41 @@ import javax.servlet.http.HttpSession;
 
 import model.DAO.itemDAO;
 import model.entity.ItemBean;
-import model.hash.CartItem;
-
+ 
 @WebServlet("/add-cart-servlet")
 public class addCartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+ 
     public addCartServlet() {
         super();
     }
-
+ 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+ 
         // リストをリクエストスコープに設定
         HttpSession session = request.getSession();
-        List<CartItem> cartList = (List<CartItem>) session.getAttribute("cartList");
+        List<ItemBean> cartList = (List<ItemBean>) session.getAttribute("cartList");
         if (cartList == null) {
             cartList = new ArrayList<>(); // 初回アクセス時に空のリストを作成
         }
-        
         //商品IDと数量を取得
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         int amount = Integer.parseInt(request.getParameter("amount"));
         System.out.println("idやで" + itemId + "am" + amount);
-       itemDAO dao = new itemDAO();
+        itemDAO dao = new itemDAO();
         //商品情報を取得
         try {
-			ItemBean item = dao.cartAdd(itemId, amount);
-			System.out.println("itemName" + item.getItemName());
+        	cartList.add(dao.cartAdd(itemId, amount));
+			System.out.println("cart" + cartList);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-        
-    
+
         //セッションにカート情報を保存
-        
-        
+
 //        try {
 //            // 複数のitemIdとamountをリクエストパラメータから取得
 //            String[] itemIdStrings = request.getParameterValues("itemId");
@@ -106,13 +102,13 @@ public class addCartServlet extends HttpServlet {
 //        } catch (SQLException | ClassNotFoundException | NumberFormatException e) {
 //            e.printStackTrace();
 //        }
-        cartList = (List<CartItem>) session.getAttribute("cartList");
         // カートリストをセッションに保存
         session.setAttribute("cartList", cartList);
-        System.out.println(cartList);
-
+        System.out.println("cart" + cartList);
+ 
         // 商品一覧画面にリダイレクト
         RequestDispatcher rd = request.getRequestDispatcher("/itemList.jsp");
         rd.forward(request, response);
     }
 }
+
