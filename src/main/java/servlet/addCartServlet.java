@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import model.DAO.itemDAO;
 import model.entity.ItemBean;
- 
+
 @WebServlet("/add-cart-servlet")
 public class addCartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -105,7 +105,7 @@ public class addCartServlet extends HttpServlet {
         // カートリストをセッションに保存
         session.setAttribute("cartList", cartList);
         System.out.println("cart" + cartList);
- 
+
         // 商品一覧画面にリダイレクト
         RequestDispatcher rd = request.getRequestDispatcher("/itemList.jsp");
         rd.forward(request, response);
