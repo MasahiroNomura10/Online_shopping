@@ -1,5 +1,5 @@
 package servlet;
-
+ 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,22 +19,21 @@ import model.entity.ItemBean;
 @WebServlet("/add-cart-servlet")
 public class addCartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+ 
     public addCartServlet() {
         super();
     }
-
+ 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+ 
         // リストをリクエストスコープに設定
         HttpSession session = request.getSession();
         List<ItemBean> cartList = (List<ItemBean>) session.getAttribute("cartList");
         if (cartList == null) {
             cartList = new ArrayList<>(); // 初回アクセス時に空のリストを作成
         }
-        
         //商品IDと数量を取得
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         int amount = Integer.parseInt(request.getParameter("amount"));
@@ -48,11 +47,9 @@ public class addCartServlet extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-        
-    
+
         //セッションにカート情報を保存
-        
-        
+
 //        try {
 //            // 複数のitemIdとamountをリクエストパラメータから取得
 //            String[] itemIdStrings = request.getParameterValues("itemId");
@@ -114,3 +111,4 @@ public class addCartServlet extends HttpServlet {
         rd.forward(request, response);
     }
 }
+
