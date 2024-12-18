@@ -136,27 +136,30 @@ public class itemDAO {
 		String sql = "SELECT money FROM user_table WHERE user_name = ?";
 		
 		//SQLの実行
-		try ( Connection con = ConnectionManager.getConnection();
-			  PreparedStatement pstmt = con.prepareStatement( sql ) ) {
+		try (Connection con = ConnectionManager.getConnection();
+			 PreparedStatement pstmt = con.prepareStatement(sql)) {
 			
 			//SQL文に取得したユーザーネームをセットする
 			pstmt.setString( 1, name );
-			
+
+				
 			//SQLの値を取得する
-			try ( ResultSet res = pstmt.executeQuery() ) {
-				//残高を取得する
-				money = res.getInt("money");
+			try (ResultSet res = pstmt.executeQuery()) {
+				if(res.next()) {
+					//残高を取得する
+					money = res.getInt("money");
+					System.out.println("money="+money );
+				}
 			}
-			
 		}
 		
 		//購入判定
 		if( money >= totalPay ) {
 			//可能
 			judge = true;
-			
+
 			//データベースの購入したアイテムを減少する
-			minusOperation( item );
+			minusitemOperation( item );
 			
 			//データベースからユーザーの残高を減らす
 			minusOperation( name, totalPay );
@@ -174,7 +177,7 @@ public class itemDAO {
 	}
 	
 	//データベースから購入したカートの中身のアイテムの在庫を減少させる
-	public void minusOperation( List< ItemBean >cart )  throws SQLException, ClassNotFoundException {
+	public void minusitemOperation( List< ItemBean >cart )  throws SQLException, ClassNotFoundException {
 		
 		//更新された行の数を格納するフィールド
 		int resultNum = 0;

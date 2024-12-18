@@ -16,9 +16,9 @@
 <h1>購入エラー</h1>
 
 <!--エラーメッセージ表示-->
-<% String message = (String) request.getAttribute("erromessage"); %>
+<% String message = (String) request.getAttribute("errormessage"); %>
 
-<p><% = message  %></p><br>
+<p><%=message%></p><br>
 
 
 <form action = "itemList.jsp" method = "POST">
