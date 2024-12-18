@@ -39,7 +39,7 @@ public class addCartServlet extends HttpServlet {
         //商品IDと数量を取得
         int itemId = Integer.parseInt(request.getParameter("itemId"));
         int amount = Integer.parseInt(request.getParameter("amount"));
-        System.out.println("id" + itemId + "am" + amount);
+        System.out.println("idやで" + itemId + "am" + amount);
        itemDAO dao = new itemDAO();
         //商品情報を取得
         try {
