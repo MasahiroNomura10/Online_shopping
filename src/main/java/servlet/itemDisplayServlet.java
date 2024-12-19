@@ -60,7 +60,7 @@ public class itemDisplayServlet extends HttpServlet {
 		try {
 			//DAOを使って情報を取得
 			itemList = dao.itemDisplay();
-			HttpSession session = request.getSession();
+HttpSession session = request.getSession();
 			session.setAttribute("itemList", itemList);
 			System.out.println("アイテムリストを表示" + itemList);
 		} catch (SQLException | ClassNotFoundException e) {
