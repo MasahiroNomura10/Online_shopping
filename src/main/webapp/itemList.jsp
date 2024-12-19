@@ -26,7 +26,7 @@
 		<table>
 			<tr>
 				<th>名称</th>
-				<th>値段</th>
+				<th>価格</th>
 				<th>購入数</th>
 			</tr>
 			<% for (ItemBean item : itemList) { %>
