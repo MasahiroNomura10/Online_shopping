@@ -6,15 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>商品一覧画面</title>
+
+<!--CSSのファイルを読み込み-->
+<link rel="stylesheet" type="text/css" href="./css/itemList.css">
+
 </head>
 <body>
 	<h1>商品一覧</h1>
 	
-	<form action="logoutServlet" method="POST">
+	<div class="content">
+	<form action="logoutServlet" method="POST" class="logout">
 		<input type="submit" value="ログアウト"><br><br>
 	</form>
 		
-	<form action="test.jsp" method="POST">
+	<form action="test.jsp" method="POST" class="buy">
 		<input type="submit" value="購入(カートへ)"><br><br>
 	</form>
 
@@ -23,7 +28,7 @@
 	%>
 	
 	
-		<table>
+		<table class="itemList">
 			<tr>
 				<th>名称</th>
 				<th>価格</th>
@@ -47,7 +52,6 @@
 			<% } %>
 			
 		</table>
-		
-	
+	</div>
 </body>
 </html>

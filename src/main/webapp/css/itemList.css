@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+h1 {
+	text-align: center;
+	color: navy;
+}
+
+.content {
+	font-size: 22px;
+}
+
+.logout {
+	text-align: right;
+}
+
+.buy {
+	text-align: right;
+}
+
+.itemList {
+	margin: 0 auto;
+	border-collapse: collapse;
+	width: 80%;
+	text-align: center;
+}
+
+.itemList th {
+	padding: 15px;
+	border-bottom: 2px solid black;
+	font-weight: bold;
+}
+
+.itemList td {
+	padding: 10px;
+	border-bottom: 1px solid black;
+	vertical-align: middle;
+}
+
+.itemList form {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.itemList input[type="number"] {
+	width: 60px;
+	text-align: center;
+}
+
+.itemList input[type="submit"] {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.itemList input[type="submit"]:hover {
+	background-color: #0056b3;
+}
