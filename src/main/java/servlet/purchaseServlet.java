@@ -52,11 +52,11 @@ public class purchaseServlet extends HttpServlet {
 		
 		//ユーザーデータ用
 		HttpSession session = request.getSession();
-
-        String userName = (String) session.getAttribute("userName");
+		String userName = (String) session.getAttribute("userName");
         if (userName == null) {
 //        	RequestDispatcher rd = request.getRequestDispatcher("amazon.co.jp");
 //            rd.forward(request, response);
+        	//localのURL関係なく外部のページに遷移する。
         	response.sendRedirect("https://www.amazon.co.jp/");
         } else {
 		//購入するアイテムリストのクラスを受け取る

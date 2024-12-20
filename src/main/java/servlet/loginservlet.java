@@ -40,6 +40,14 @@ public class loginservlet extends HttpServlet {
 		TopDAO dao = new TopDAO();
 //		ブーリアンで認証結果出せるようにする。
 		boolean i =false;
+		
+		//ユーザー名またはパスワードが空の場合
+		if (userName == null || userName.isEmpty() || password == null || password.isEmpty()) {
+			RequestDispatcher rd = request.getRequestDispatcher("loginFailure.jsp");
+		    rd.forward(request, response);
+		    return; // 処理を終了
+		    
+		}
 		try {
 			//ログイン時に入力しているパスワードと、ユーザーのソルト値をハッシュ化とソルト化する
 			String salts =dao.saltSearch(userName);

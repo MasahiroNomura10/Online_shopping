@@ -50,5 +50,8 @@
     <% 
         }
     %>
+    <form action="itemList.jsp" method="POST">
+    	<input type="submit" value="商品ページに戻る">
+    </form>
 </body>
 </html>
