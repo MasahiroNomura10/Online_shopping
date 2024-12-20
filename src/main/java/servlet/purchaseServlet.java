@@ -36,7 +36,8 @@ public class purchaseServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -52,6 +53,12 @@ public class purchaseServlet extends HttpServlet {
 		//ユーザーデータ用
 		HttpSession session = request.getSession();
 
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null) {
+//        	RequestDispatcher rd = request.getRequestDispatcher("amazon.co.jp");
+//            rd.forward(request, response);
+        	response.sendRedirect("https://www.amazon.co.jp/");
+        } else {
 		//購入するアイテムリストのクラスを受け取る
 		List<ItemBean> cartList = ( List<ItemBean> )session.getAttribute("cartList");
 
@@ -74,6 +81,7 @@ public class purchaseServlet extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+        }
 
 		
 	}

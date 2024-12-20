@@ -27,9 +27,17 @@ public class addCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        
+        
  
         // リストをリクエストスコープに設定
         HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("userName");
+        if (userName == null) {
+        	RequestDispatcher rd = request.getRequestDispatcher("/top.jsp");
+            rd.forward(request, response);
+        } else {
+        
         List<ItemBean> cartList = (List<ItemBean>) session.getAttribute("cartList");
         if (cartList == null) {
             cartList = new ArrayList<>(); // 初回アクセス時に空のリストを作成
@@ -47,7 +55,6 @@ public class addCartServlet extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-
         //セッションにカート情報を保存
 
 //        try {
@@ -109,6 +116,7 @@ public class addCartServlet extends HttpServlet {
         // 商品一覧画面にリダイレクト
         RequestDispatcher rd = request.getRequestDispatcher("/itemList.jsp");
         rd.forward(request, response);
+    }
     }
 }
 
