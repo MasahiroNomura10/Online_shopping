@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <meta charset="UTF-8">
 <title>商品一覧画面</title>
 
@@ -20,7 +21,10 @@
 	</form>
 		
 	<form action="test.jsp" method="POST" class="buy">
-		<input type="submit" value="購入(カートへ)"><br><br>
+		<button class="btn">
+		<i class="bi bi-cart"></i>
+		</button>
+<!--		<input type="submit" value="購入(カートへ)">-->
 	</form>
 
 	<%

@@ -12,7 +12,7 @@
 	ユーザーネーム：<input type="text" name="userName" required><br>
 	パスワード：<input type="password" name="password" required><br>
 	メールアドレス：<input type="text" name="mailAddres" required><br>
-	残高：<input type="number" name="money" required><br><br>
+	残高：<input type="number" name="money" min="1" required><br><br>
 	<input type="submit" value="アカウント登録">
 	</form>
 </body>

@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body {
+    background-image: url('mesmerizing-green-forest-full-different-kinds-unique-plants-yakushima-japan.jpg');
+    
+}
+	
 h1 {
 	text-align: center;
 	color: navy;

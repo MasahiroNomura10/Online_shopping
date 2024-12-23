@@ -13,19 +13,21 @@
 
 </head>
 <body>
-
-    
-    <h1>ログイン画面</h1>
-	<form action="loginservlet" method="post">
-	ユーザー名：<input type="text" name="userName"><br>
-	パスワード：<input type="password" name="password"><br><br>
-	
-	<input type="submit" value="ログイン">
-	</form>
-	
-	<form action="acountCreate.jsp" method="post">
-	<input type="submit" value="アカウント登録はこちら">
-	</form>
-	
+	<h1>ログイン画面</h1>
+		<div class="content">
+			<form action="loginservlet" method="post" class="login">
+			ユーザー名：<input type="text" name="userName"><br>
+			パスワード：<input type="password" name="password"><br><br>
+			
+			<input type="submit" value="ログイン">
+			</form>
+		</div>
+		
+		<div class="button">	
+			<form action="acountCreate.jsp" method="post" class="create">
+			<input type="submit" value="アカウント登録はこちら">
+			</form>
+		</div>
+		
 </body>
 </html>
