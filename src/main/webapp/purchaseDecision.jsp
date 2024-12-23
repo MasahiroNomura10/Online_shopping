@@ -19,12 +19,12 @@
 	
 	<div class ="main_Text">
 
-		<h1>購入が完了しました。</h1>
+		<p class = "inner_Text">購入が完了しました。</p>
 		
 		
 		<form action = "itemList.jsp" method = "POST">
 		
-			<input type = "submit" value = "商品一覧に戻る">
+			<input type = "submit" value = "商品一覧に戻る" class = "return_Button">
 			
 		</form>
 	</div>

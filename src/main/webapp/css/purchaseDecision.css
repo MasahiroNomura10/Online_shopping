@@ -3,7 +3,13 @@
 
 
 /*背景の設定*/
-body {
+.main_Text{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;  /* ビューポート全体の高さを使う */
+	text-align: center;  /* テキストを中央揃え */
 	/* 画像ファイルの指定 */
 	background-image:url("../images/backGround.png");
 	 
@@ -20,19 +26,20 @@ body {
 	background-size: cover;	
 }
 
-.main_Text{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;  /* ビューポート全体の高さを使う */
-	text-align: center;  /* テキストを中央揃え */
-}
-h1 {
-    margin: 20px 0;  /* 見た目のために余白を追加 */
+/*フォントの設定*/
+.inner_Text {
+	font-size: 8vw;
+	margin-left: 10%;
 }
 
-form input {
-    margin-top: 20px;  /* ボタンの位置調整 */
+/*ボタンの設定*/
+.return_Button {
+	width: 10em;
+	height:3em;
+	font-size: 3vw;
+	
 }
+
+
+
 
