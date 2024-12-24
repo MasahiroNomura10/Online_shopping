@@ -14,10 +14,10 @@
 	<div class = "entry_Main">
 		<h1>アカウント登録完了</h1>
 		<jsp:useBean id="user" scope="request" class="model.entity.UserBean"/>
-		<p>ユーザー名：<jsp:getProperty name="user" property="userName"/></p>
-		<p>パスワード：<jsp:getProperty name="user" property="password"/></p>
-		<p>メールアドレス：<jsp:getProperty name="user" property="mailAddres"/></p>
-		<p>残高：<jsp:getProperty name="user" property="money"/></p>
+		<p><div class = "textBox">ユーザー名：</div><jsp:getProperty name="user" property="userName"/></p>
+		<p><div class = "textBox">パスワード：</div><jsp:getProperty name="user" property="password"/></p>
+		<p><div class = "textBox">メールアドレス：</div><jsp:getProperty name="user" property="mailAddres"/></p>
+		<p><div class = "textBox">残高：</div><jsp:getProperty name="user" property="money"/></p>
 		<form action="top.jsp" method="post">
 		<input type="submit" value="TOPページに戻る">
 		</form>

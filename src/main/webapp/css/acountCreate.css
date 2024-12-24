@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+
+
+
+/*全体の設定*/
+.acountCreate_Main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	justify-content: space-evenly;
+	height: 100vh;  /* ビューポート全体の高さを使う */
+	text-align: center;  /* テキストを中央揃え */
+	
+	background-color: gray;
+	
+	font-size: 30px;
+}
+
+/*項目名の設定*/
+.item {
+	width: 300px;
+	background-color: brown;
+}
+
+/*項目全体の箱*/
+.itemBox {
+	display: flex;
+	
+}
+
+/*登録ボタンの設定*/
+.button {
+	width: 10em;
+	height:3em;
+	font-size: 22px;
+}

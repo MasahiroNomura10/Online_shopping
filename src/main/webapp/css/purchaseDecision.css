@@ -28,15 +28,14 @@
 
 /*フォントの設定*/
 .inner_Text {
-	font-size: 8vw;
-	margin-left: 10%;
+	font-size: 80px;
 }
 
 /*ボタンの設定*/
 .return_Button {
 	width: 10em;
 	height:3em;
-	font-size: 3vw;
+	font-size: 22px;
 	
 }
 
