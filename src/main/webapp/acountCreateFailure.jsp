@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>アカウント登録エラー</title>
+<!--CSSのファイルを読み込み-->
+<link rel="stylesheet" type="text/css" href="./css/acountCreateFailure.css">
 </head>
 <body>
 	<h1>アカウント登録エラー</h1>

@@ -9,6 +9,9 @@
 
 <title>購入エラー画面</title>
 
+<!--CSSのファイルを読み込み-->
+<link rel="stylesheet" type="text/css" href="./css/purchaseFailure.css">
+
 </head>
 
 <body>

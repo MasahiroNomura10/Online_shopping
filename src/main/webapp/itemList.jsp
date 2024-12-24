@@ -24,7 +24,7 @@
 		<button class="btn">
 		<i class="bi bi-cart"></i>
 		</button>
-<!--		<input type="submit" value="購入(カートへ)">-->
+		<input type="submit" value="購入(カートへ)">
 	</form>
 
 	<%
