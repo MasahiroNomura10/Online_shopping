@@ -20,10 +20,29 @@
 		<input type="submit" value="ログアウト"><br><br>
 	</form>
 		
+	<%
+		//セッションからカートの中身を取得
+		List<ItemBean> cartList = (List<ItemBean>) session.getAttribute("cartList");
+	
+		//購入数を入れるフィールド
+		int buyNum = 0;
+		
+		//カートの中身があるか判定する
+		if( cartList != null ){
+			//カートの中身の購入数を計算
+			for(ItemBean i : cartList){
+				buyNum += i.getAmount();
+			}
+		}
+	%>
+	
 	<form action="test.jsp" method="POST" class="buy">
 		<button class="btn">
 		<i class="bi bi-cart"></i>
 		</button>
+		<%if( buyNum != 0 ){%>
+			<%= buyNum %>
+		<%} %>
 		<input type="submit" value="購入(カートへ)">
 	</form>
 
@@ -48,14 +67,24 @@
 					<form action="add-cart-servlet" method="POST">
 						<input type="number" name="amount" min="0" max="<%= item.getStock() %>" value="0">
 						<input type="hidden" name="itemId" value="<%= item.getItemId() %>">
-						<input type="submit" value="カートに追加">
+						<input type="submit" value="カートに追加" >
 					</form>
 					</td>
 				</tr>
 			
 			<% } %>
 			
-		</table>
-	</div>
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
