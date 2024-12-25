@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+
+
+
+
+
+/*背景の設定*/
+.test_Main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;  /* ビューポート全体の高さを使う */
+	text-align: center;  /* テキストを中央揃え */
+	/* 画像ファイルの指定 */
+	background-image:url("../images/test_back.png");
+	 
+	/* 画像を常に天地左右の中央に配置 */
+	background-position: center center;
+	 
+	/* 画像をタイル状に繰り返し表示しない */
+	background-repeat: no-repeat;
+	 
+	/* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+	background-attachment: fixed;
+	 
+	/* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+	background-size: cover;	
+}
+
+
+/*「購入確認」の設定*/
+.main_Title {
+	font-size: 45px;
+}
+
+
+/*テキストの箱の設定*/
+.main_Text {
+	margin-bottom: 100px;
+	font-size: 25px;
+}
+
+/*カート内容の箱の設定*/
+.cart {
+	width:  700px;
+	background-color: white;
+}
+
+/*ボタンの設定*/
+.button {
+	width: 200px;
+	height:60px;
+	font-size: 20px;
+	margin-top: 30px;
+	
+}
+
+/*カートが空のテキストの設定*/
+.text_None {
+	font-size: 30px;
+}
+
+
+
+
+
+
+
